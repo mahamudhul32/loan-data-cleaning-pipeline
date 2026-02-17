@@ -45,7 +45,23 @@ loan_data <- loan_data %>%
     DTI_Ratio = round(Loan_Amount / Annual_Income, 2)
   )
   
-
-
 view(loan_data)
+
+# Visualization: DTI Ratio based on Loan Status
+ggplot(loan_data, aes(x = Loan_Status, y = DTI_Ratio, fill = Loan_Status)) +
+  geom_boxplot(alpha = 0.6, outlier.shape = NA) +
+  geom_jitter(width = 0.2, alpha= 0.5, color = "darkblue") +
+  theme_minimal() + 
+  labs(
+    title = "Impact of Debt-to-Income (DTI) Ratio on Loan Status",
+    subtitle = "Higher DTI ratios often correlate with higher rejection rates",
+    x = "Loan Approval Status",
+    y = "DTI Ratio (Loan / Income)",
+    fill = "Status"
+  ) + 
+  scale_fill_brewer(palette = "Set2")
+
+
+
+
 
